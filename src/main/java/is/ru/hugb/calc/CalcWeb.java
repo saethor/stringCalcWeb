@@ -9,7 +9,10 @@ public class CalcWeb {
         });
         get(
             "/add/:input",
-            (req, res) -> add(req.params(":input"))
+            (req, res) -> {
+                int sum = add(req.params(":input"));
+                return "The sum is: " + sum;
+            }
         );
     }
 
