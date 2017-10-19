@@ -10,8 +10,10 @@ repositories {
 dependencies {
     // Dependencies
     compile 'com.sparkjava:spark-core:2.6.0'
+    compile 'com.heroku.sdk:heroku-jdbc:0.1.1'
 
     // Test dependencies
     testImplementation 'junit:junit:4.12'
 }
 
+task stage (dependsOn: installDist)
