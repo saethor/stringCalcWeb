@@ -4,7 +4,7 @@ import static spark.Spark.*;
 
 public class CalcWeb {
     public static void main(String[] args) {
-        port(5000);
+        port(getHerokuPort());
         get("/", (req, res) -> {
             return "No route specified. Try /add/1,2";
         });
@@ -20,5 +20,13 @@ public class CalcWeb {
     private static int add(String input) {
         StringCalculator Calculator = new StringCalculator();
         return Calculator.add(input);
+    }
+
+    static int getHerokuPort() {
+        ProcessBuilder psb = new ProcessBuilder();
+        if (psb.environment().get("PORT") != null) {
+            return Integer.parseInt(psb.environment().get("PORT"));
+        }
+        return 4567;
     }
 }
